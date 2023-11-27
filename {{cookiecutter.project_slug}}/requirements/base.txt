@@ -1,0 +1,10 @@
+# Base
+# ------------- #
+fastapi==0.104.1 ; python_version >= "3.11" and python_version < "4.0"
+pydantic==2.5.2 ; python_version >= "3.11" and python_version < "4.0"
+uvicorn==0.24.0.post1 ; python_version >= "3.11" and python_version < "4.0"
+python-dotenv==1.0.0 ; python_version >= "3.11" and python_version < "4.0"
+pymysql==1.1.0 ; python_version >= "3.11" and python_version < "4.0"
+{%- if cookiecutter.use_serverless == 'y' %}
+mangum==0.17.0 ; python_version >= "3.11" and python_version < "4.0"
+{%- endif %}

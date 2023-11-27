@@ -1,0 +1,21 @@
+{
+    "repo_name": "fastpai-template",
+    "project_name": "FastAPI Template",
+    "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_')|replace('.', '_')|trim() }}",
+    "description": "Amazing project with FastAPI!",
+    "author_name": "Fernando Celmer",
+    "domain_name": "fernandocelmer.com",
+    "email": "email | trim() |replace(' ', '-') }}@{{ cookiecutter.domain_name.lower() | trim() }}",
+    "version": "0.1.0",
+    "open_source_license": [
+        "MIT",
+        "BSD",
+        "Apache Software License 2.0",
+        "Not open source"
+      ],
+      "url_documentation": "#",
+      "url_source_code": "#",
+      "use_async": "y",
+      "use_mkdocs": "y",
+      "use_serverless": "n"
+}
