@@ -17,5 +17,5 @@
       "url_source_code": "#",
       "use_async": "y",
       "use_mkdocs": "y",
-      "use_serverless": "n"
+      "use_serverless": "y"
 }
