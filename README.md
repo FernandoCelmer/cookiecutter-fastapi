@@ -7,6 +7,16 @@
 - **Documentation**: [https://github.com/FernandoCelmer/cookiecutter-fastapi](https://github.com/FernandoCelmer/cookiecutter-fastapi)
 - **Source Code**: [https://github.com/FernandoCelmer/cookiecutter-fastapi](https://github.com/FernandoCelmer/cookiecutter-fastapi)
 
+## Usage
+
+First install cookiecutter
+
+    pip install cookiecutter
+
+Now run this command to clone
+
+    cookiecutter https://github.com/FernandoCelmer/cookiecutter-fastapi
+
 ### Commit Style
 
 - ⚙️ FEATURE

@@ -1,9 +1,9 @@
-from os import remove
 from pathlib import Path
 from shutil import rmtree
 
+
 def remove_mkdocs():
-    remove(Path.cwd().joinpath('docs'))
+    rmtree(Path.cwd().joinpath('docs'))
     rmtree('mkdocs.yml')
 
 
