@@ -1,0 +1,20 @@
+site_name: {{ cookiecutter.project_name }}
+repo_name: {{ cookiecutter.repo_name }}
+repo_url: {{ cookiecutter.url_source_code }}
+site_url: {{ cookiecutter.url_documentation }}
+copyright: {{ cookiecutter.author_name }}
+
+nav:
+    - Home: index.md
+    - Getting Started: nav/getting-started.md
+    - Development:
+      - nav/development-guide.md
+      - nav/release-notes.md
+
+theme:
+  name: simple-blog
+  favicon: assets/fastapi.png
+  logo: assets/fastapi.png
+  theme_style: dark
+  site_name_style: normal
+  title_style: bold
