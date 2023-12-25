@@ -1,5 +1,5 @@
 {
-    "repo_name": "fastpai-template",
+    "repo_name": "cookiecutter-fastapi",
     "project_name": "FastAPI Template",
     "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_')|replace('.', '_')|trim() }}",
     "description": "Amazing project with FastAPI!",
