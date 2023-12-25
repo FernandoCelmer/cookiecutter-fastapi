@@ -6,7 +6,10 @@ pytest==7.4.3 ; python_version >= "3.11" and python_version < "4.0"
 
 # Documentation
 # ------------- #
+{%- if cookiecutter.use_mkdocs == 'y' %}
 mkdocs==1.5.3 ; python_version >= "3.11" and python_version < "4.0"
+mkdocs-simple-blog==0.0.9 ; python_version >= "3.11" and python_version < "4.0"
+{%- endif %}
 
 # Code quality
 # ------------- #
