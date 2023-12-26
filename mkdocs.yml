@@ -1,0 +1,25 @@
+site_name: Cookiecutter FastAPI
+repo_name: cookiecutter-fastapi 
+repo_url: https://github.com/FernandoCelmer/cookiecutter-fastapi
+site_url: https://github.com/FernandoCelmer/cookiecutter-fastapi
+copyright: Fernando Celmer
+
+nav:
+    - Home: index.md
+    - Getting Started: nav/getting-started.md
+    - Development:
+      - nav/development-guide.md
+      - nav/release-notes.md
+
+theme:
+  name: simple-blog
+  favicon: assets/fastapi.png
+  logo: assets/fastapi.png
+  theme_style: dark
+  site_name_style: bold
+  title_style: bold
+  components:
+    title: false
+
+extra_css:
+  - assets/style.css
