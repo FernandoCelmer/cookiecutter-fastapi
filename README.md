@@ -4,7 +4,7 @@
 ![GitHub Repo stars](https://img.shields.io/github/stars/FernandoCelmer/cookiecutter-fastapi?label=Stars&style=flat-square)
 ![GitHub last commit](https://img.shields.io/github/last-commit/FernandoCelmer/cookiecutter-fastapi?style=flat-square)
 
-- **Documentation**: [https://github.com/FernandoCelmer/cookiecutter-fastapi](https://github.com/FernandoCelmer/cookiecutter-fastapi)
+- **Documentation**: [https://fernandocelmer.github.io/cookiecutter-fastapi](https://fernandocelmer.github.io/cookiecutter-fastapi)
 - **Source Code**: [https://github.com/FernandoCelmer/cookiecutter-fastapi](https://github.com/FernandoCelmer/cookiecutter-fastapi)
 
 ## Usage
@@ -33,7 +33,7 @@ Now just fill in some information for the cookiecutter to do its work and replac
     3 - Apache Software License 2.0
     4 - Not open source
     Choose from [1/2/3/4] (1): 1
-    [10/14] url_documentation (#): https://github.com/FernandoCelmer/cookiecutter-fastapi
+    [10/14] url_documentation (#): https://fernandocelmer.github.io/cookiecutter-fastapi
     [11/14] url_source_code (#): https://github.com/FernandoCelmer/cookiecutter-fastapi
     [12/14] use_async (y): y
     [13/14] use_mkdocs (y): y

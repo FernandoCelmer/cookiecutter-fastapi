@@ -1,7 +1,7 @@
 site_name: Cookiecutter FastAPI
 repo_name: cookiecutter-fastapi 
 repo_url: https://github.com/FernandoCelmer/cookiecutter-fastapi
-site_url: https://github.com/FernandoCelmer/cookiecutter-fastapi
+site_url: https://fernandocelmer.github.io/cookiecutter-fastapi
 copyright: Fernando Celmer
 
 nav:
