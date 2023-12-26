@@ -15,7 +15,7 @@ theme:
   name: simple-blog
   favicon: assets/fastapi.png
   logo: assets/fastapi.png
-  theme_style: dark
+  theme_style: light
   site_name_style: bold
   title_style: bold
   components:
