@@ -5,7 +5,7 @@ from shutil import rmtree
 
 def remove_mkdocs():
     remove('mkdocs.yml')
-    rmtree(Path.cwd().joinpath('docs'))
+    rmtree(Path.cwd().joinpath('{{ cookiecutter.editor }}','docs'))
 
 
 def main():

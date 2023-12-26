@@ -3,8 +3,8 @@ from fastapi import FastAPI
 from mangum import Mangum
 {%- endif %}
 
-from {{ cookiecutter.project_slug }} import __version__
-from {{ cookiecutter.project_slug }}.api.v1.routers import router
+from app import __version__
+from app.api.v1.routers import router
 
 
 app = FastAPI(
