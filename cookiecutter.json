@@ -5,7 +5,7 @@
     "description": "Amazing project with FastAPI!",
     "author_name": "Fernando Celmer",
     "domain_name": "fernandocelmer.com",
-    "email": "email | trim() |replace(' ', '-') }}@{{ cookiecutter.domain_name.lower() | trim() }}",
+    "email": "{{ cookiecutter.author_name.lower() | trim() |replace(' ', '-') }}@{{ cookiecutter.domain_name.lower() | trim() }}",
     "version": "0.1.0",
     "open_source_license": [
         "MIT",
