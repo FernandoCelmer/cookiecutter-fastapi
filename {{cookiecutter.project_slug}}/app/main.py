@@ -14,5 +14,6 @@ app = FastAPI(
 )
 
 {%- if cookiecutter.use_serverless == 'y' %}
+
 handler = Mangum(app)
 {%- endif %}
