@@ -1,5 +1,3 @@
-from os import getenv
-from functools import lru_cache
 from typing import Annotated
 
 from fastapi import Depends, FastAPI
@@ -8,19 +6,13 @@ from mangum import Mangum
 {%- endif %}
 
 from app import __version__
-from app.core.settings import Base
+from app.core.settings import Settings
 from app.api.v1.routers import router
 
 
-@lru_cache
-def get_settings():
-    environment = getenv("SCOPE", "test").lower()
-    return getattr(Base, environment)()
-
-
 app = FastAPI(
-    title="{{ cookiecutter.project_name }}",
-    description="{{ cookiecutter.description }}",
+    title="Test FastAPI Template",
+    description="Amazing project with FastAPI!",
     version=__version__
 )
 
@@ -32,7 +24,7 @@ handler = Mangum(app)
 
 # TODO: Test Config!
 @app.get("/info")
-async def info(settings: Annotated[Base, Depends(get_settings)]):
+async def info(settings: Annotated[Settings, Depends(Settings.get_settings)]):
     return {
         "scope": settings.scope,
         "database_url": settings.database_url
