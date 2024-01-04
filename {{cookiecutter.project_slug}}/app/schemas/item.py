@@ -22,8 +22,12 @@ class SchemaCreate(SchemaBase):
 
 
 class Schema(SchemaBase):
-    # TODO: Add options for UUID and Integer type ID
+{%- if cookiecutter.id_type == 'UUID' %}
     id: UUID = Field(default_factory=uuid4)
+{%- endif %}
+{%- if cookiecutter.id_type == 'Integer' %}
+    id: int
+{%- endif %}
 
     class Config:
         from_attributes = False

@@ -6,7 +6,12 @@ from sqlalchemy import (
     Column,
     DateTime,
     String,
+{%- if cookiecutter.id_type == 'UUID' %}
     Uuid
+{%- endif %}
+{%- if cookiecutter.id_type == 'Integer' %}
+    Integer
+{%- endif %}
 )
 from app.core.database import Base, engine
 
@@ -18,8 +23,12 @@ class Item(Base):
     __tablename__ = "item"
     __table_args__ = {'extend_existing': True}
 
-    # TODO: Add options for UUID and Integer type ID
+{%- if cookiecutter.id_type == 'UUID' %}
     id = Column(Uuid(as_uuid=True), primary_key=True, default=uuid.uuid4)
+{%- endif %}
+{%- if cookiecutter.id_type == 'Integer' %}
+    id = Column(Integer, primary_key=True, index=True)
+{%- endif %}
     title = Column(String(75))
     description = Column(String(100))
     status = Column(Boolean, default=False)
