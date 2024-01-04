@@ -21,5 +21,6 @@
       "url_source_code": "#",
       "use_async": "y",
       "use_mkdocs": "y",
-      "use_serverless": "y"
+      "use_serverless": "y",
+      "use_templates": "y"
 }
