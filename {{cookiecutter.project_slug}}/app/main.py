@@ -16,6 +16,12 @@ app = FastAPI(
     version=__version__
 )
 
+{%- if cookiecutter.use_auth == 'y' %}
+
+app.include_router(auth, prefix="/auth")
+{%- endif %}
+app.include_router(router, prefix="/v1")
+
 {%- if cookiecutter.use_serverless == 'y' %}
 
 handler = Mangum(app)

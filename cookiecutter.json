@@ -22,6 +22,6 @@
   "use_async": "y",
   "use_mkdocs": "y",
   "use_serverless": "y",
-  "use_templates": "n",
-  "use_auth": "n"
+  "use_templates": "y",
+  "use_auth": "y"
 }
