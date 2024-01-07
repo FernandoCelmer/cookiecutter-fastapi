@@ -7,6 +7,9 @@ from mangum import Mangum
 
 from app import __version__
 from app.core.settings import Settings
+{%- if cookiecutter.use_auth == 'y' %}
+from app.core.auth.endpoints import auth
+{%- endif %}
 from app.api.v1.routers import router
 
 
