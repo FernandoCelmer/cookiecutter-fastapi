@@ -17,6 +17,8 @@ mkdocs = "^1.5.3"
 mkdocs-simple-blog = "^0.0.9"
 pydantic-settings = "^2.1.0"
 pydantic = "^2.5.3"
+pyjwt = "^2.8.0"
+passlib = "^1.7.4"
 
 
 [tool.poetry.group.testing.dependencies]
