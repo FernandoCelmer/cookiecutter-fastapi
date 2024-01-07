@@ -14,5 +14,6 @@ mangum==0.17.0 ; python_version >= "3.11" and python_version < "4.0"
 {%- if cookiecutter.use_auth == 'y' %}
 pyjwt==2.8.0 ; python_version >= "3.11" and python_version < "4.0"
 passlib==1.7.4 ; python_version >= "3.11" and python_version < "4.0"
+pydantic[email]==2.5.3 ; python_version >= "3.11" and python_version < "4.0"
 {%- endif %}
 # ------------- #
