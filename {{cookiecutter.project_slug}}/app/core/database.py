@@ -1,9 +1,9 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, registry
-
 from app.core.settings import Settings
 
 
+settings = Settings.get_settings()
 engine = create_engine(
     url=settings.database_url,
     connect_args={},

@@ -4,7 +4,7 @@ from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 
 from app.core.auth.base import BaseAuth
 from app.core.auth.models.auth_user import ControllerAuthUser
-from app.core.database import get_db
+from app.core.database import Database
 
 
 security = HTTPBearer()
@@ -12,7 +12,7 @@ auth_handler = BaseAuth()
 
 
 async def authorization(
-        db: Session = Depends(get_db),
+        db: Session = Depends(Database.get_db),
         credentials: HTTPAuthorizationCredentials = Security(security)):
     token = credentials.credentials
     payload = auth_handler.decode_token(token=token)
