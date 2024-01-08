@@ -23,5 +23,6 @@
   "use_mkdocs": "y",
   "use_serverless": "y",
   "use_templates": "y",
-  "use_auth": "y"
+  "use_auth": "y",
+  "github_action_code_scan": "y"
 }

@@ -28,6 +28,6 @@ class Settings:
     def get_settings(cls, scope: Optional[str] = None):
         if scope:
             return getattr(cls, f'_{scope}')()
-    
+
         environment = getenv('SCOPE', 'test').lower()
         return getattr(cls, f'_{environment}')()
