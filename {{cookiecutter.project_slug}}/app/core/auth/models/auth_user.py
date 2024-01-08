@@ -4,7 +4,8 @@ from sqlalchemy import (
     Column,
     DateTime,
     String,
-    Integer)
+    Integer
+)
 from app.core.database import Base, engine
 from app.core.controller import BaseController
 
@@ -18,6 +19,10 @@ class AuthUser(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     email = Column(String(75), unique=True)
+    username = Column(String(45), unique=True)
+    password = Column(String(100), unique=True)
+    first_name = Column(String(100))
+    last_name = Column(String(100))
     is_staff = Column(Boolean, default=False)
     is_active = Column(Boolean, default=True)
     created_date = Column(DateTime, default=datetime.utcnow)

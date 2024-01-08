@@ -7,13 +7,18 @@
 - **Documentation**: [https://fernandocelmer.github.io/cookiecutter-fastapi](https://fernandocelmer.github.io/cookiecutter-fastapi)
 - **Source Code**: [https://github.com/FernandoCelmer/cookiecutter-fastapi](https://github.com/FernandoCelmer/cookiecutter-fastapi)
 
-## Project Progress:
 
-- [ ] Async
-- [ ] Mkdocs
-- [ ] Serverless
+## Features
+
+- [x] For FastAPI 0.104.1
+- [x] Works with Python 3.11
+- [x] Config for Serverless
+- [x] Config for MySQL/SQLlite
+- [x] Async
+- [x] Mkdocs
+- [x] Basic Auth JWT
 - [ ] Templates
-- [ ] Auth
+- [ ] Crud
 
 ## Usage
 

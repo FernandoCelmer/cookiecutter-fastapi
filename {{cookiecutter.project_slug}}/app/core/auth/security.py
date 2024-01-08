@@ -21,7 +21,8 @@ async def authorization(
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid authentication credentials",
-            headers={"WWW-Authenticate": "Bearer"})
+            headers={"WWW-Authenticate": "Bearer"}
+        )
 
     return ControllerAuthUser(db=db).read(
         params={"email": payload.get('value')})
