@@ -29,8 +29,7 @@ def signup(
         data={
             "email": user.email,
             "username": user.username,
-            "password": hashed_password}
-        )
+            "password": hashed_password})
 
     return SchemaSignup(**query_user.__dict__)
 
