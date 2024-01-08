@@ -18,6 +18,7 @@
 - ⚠️ SECURITY
 
 {%- if cookiecutter.open_source_license != "Not open source" %}
+
 ### License
 
 This project is licensed under the terms of the {{ cookiecutter.open_source_license }} license.
