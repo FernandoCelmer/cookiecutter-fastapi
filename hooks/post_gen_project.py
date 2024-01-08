@@ -40,7 +40,7 @@ def main():
     if "{{ cookiecutter.use_templates }}" != "y":
         remove_templates()
 
-    if "{{ cookiecutter.use_auth }}" != "y":
+    if "{{ cookiecutter.use_auth }}" == "y":
         remove_endpoint(file='item.py')
         rename_endpoint(file='item_auth.py', for_file='item.py')
     else:
