@@ -1,3 +1,7 @@
+"""
+This module contains the auth user model.
+"""
+
 from datetime import datetime
 from sqlalchemy import (
     Boolean,

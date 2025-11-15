@@ -4,6 +4,9 @@ from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
 from app.core.database import engine
 from app.core.query import QueryData
+{%- if cookiecutter.id_type == 'UUID' %}
+from uuid import UUID
+{%- endif %}
 
 
 class BaseController(object):
@@ -85,7 +88,7 @@ class BaseController(object):
     def update(
             self,
             data: dict,
-            id: int = None,
+            id: {% if cookiecutter.id_type == 'UUID' %}UUID{% elif cookiecutter.id_type == 'Integer' %}int{% endif %} = None,
             params: dict = list()):
         """Edit a record in the database.
         """

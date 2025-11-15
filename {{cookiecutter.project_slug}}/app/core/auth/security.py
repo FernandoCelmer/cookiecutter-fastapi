@@ -1,3 +1,7 @@
+"""
+This module contains the auth security.
+"""
+
 from sqlalchemy.orm import Session
 from fastapi import status, Depends, Security, HTTPException
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
@@ -11,9 +15,15 @@ security = HTTPBearer()
 auth_handler = BaseAuth()
 
 
+{%- if cookiecutter.use_async == 'y' %}
 async def authorization(
         db: Session = Depends(Database.get_db),
         credentials: HTTPAuthorizationCredentials = Security(security)):
+{%- elif cookiecutter.use_async == 'n' %}
+def authorization(
+        db: Session = Depends(Database.get_db),
+        credentials: HTTPAuthorizationCredentials = Security(security)):
+{%- endif %}
     token = credentials.credentials
     payload = auth_handler.decode_token(token=token)
 

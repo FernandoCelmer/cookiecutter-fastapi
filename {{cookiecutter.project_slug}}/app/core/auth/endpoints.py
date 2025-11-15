@@ -1,3 +1,7 @@
+"""
+This module contains the auth endpoints.
+"""
+
 from fastapi import APIRouter, HTTPException, Depends, Security
 from fastapi.security import HTTPAuthorizationCredentials
 from sqlalchemy.orm import Session
@@ -13,9 +17,15 @@ auth = APIRouter(tags=["Auth"])
 
 
 @auth.post('/signup')
+{%- if cookiecutter.use_async == 'y' %}
+async def signup(
+        user: SchemaSignup,
+        db: Session = Depends(Database.get_db)):
+{%- elif cookiecutter.use_async == 'n' %}
 def signup(
         user: SchemaSignup,
         db: Session = Depends(Database.get_db)):
+{%- endif %}
     query_user = ControllerAuthUser(db=db).read(params={"email": user.email})
 
     if query_user:
@@ -35,9 +45,15 @@ def signup(
 
 
 @auth.post('/login')
+{%- if cookiecutter.use_async == 'y' %}
+async def login(
+        user: SchemaLogin,
+        db: Session = Depends(Database.get_db)):
+{%- elif cookiecutter.use_async == 'n' %}
 def login(
         user: SchemaLogin,
         db: Session = Depends(Database.get_db)):
+{%- endif %}
     query_user = ControllerAuthUser(db=db).read(params={"email": user.email})
 
     if not query_user:
@@ -59,8 +75,13 @@ def login(
 
 
 @auth.get('/refresh_token')
+{%- if cookiecutter.use_async == 'y' %}
+async def refresh_token(
+        credentials: HTTPAuthorizationCredentials = Security(security)):
+{%- elif cookiecutter.use_async == 'n' %}
 def refresh_token(
         credentials: HTTPAuthorizationCredentials = Security(security)):
+{%- endif %}
     refresh_token = credentials.credentials
     new_token = auth_handler.refresh_token(refresh_token)
 
