@@ -2,13 +2,14 @@
 Item endpoints.
 """
 
+{%- if cookiecutter.id_type == 'UUID' %}
+from uuid import UUID
+{%- endif %}
+
 from fastapi import APIRouter, Depends
 
 {%- if cookiecutter.use_auth == 'y' %}
 from app.core.auth.security import authorization
-{%- endif %}
-{%- if cookiecutter.id_type == 'UUID' %}
-from uuid import UUID
 {%- endif %}
 
 router = APIRouter()
