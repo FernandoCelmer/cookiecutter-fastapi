@@ -13,10 +13,13 @@
 - [x] For FastAPI 0.104.1
 - [x] Works with Python 3.12
 - [x] Config for Serverless
-- [x] Config for MySQL/SQLlite
-- [x] Async
+- [x] Config for MySQL/SQLite
+- [x] Docker & Docker Compose
+- [x] Async/Sync support
+- [x] UUID/Integer ID types
 - [x] Mkdocs
 - [x] Basic Auth JWT
+- [x] Comprehensive test suite (pytest)
 - [ ] Templates
 - [ ] Crud
 
@@ -58,6 +61,49 @@ Now just fill in some information for the cookiecutter to do its work and replac
     [16/18] use_templates (y): 
     [17/18] use_auth (y):
     [18/18] github_action_code_scan (y):
+
+## Development
+
+### Running with Docker
+
+The template includes Docker and Docker Compose configuration for easy development setup.
+
+1. Create a `.env` file based on `.env-exemple`:
+
+    ```bash
+    cp .env-exemple .env
+    ```
+
+2. Start the services:
+
+    ```bash
+    docker-compose up -d
+    ```
+
+3. The API will be available at `http://localhost:8000`
+4. API documentation (Swagger UI) at `http://localhost:8000/docs`
+
+### Running Tests
+
+The template includes a comprehensive test suite using pytest.
+
+1. Install dependencies:
+
+    ```bash
+    poetry install
+    ```
+
+2. Run tests:
+
+    ```bash
+    pytest
+    ```
+
+3. Run tests with coverage:
+
+    ```bash
+    pytest --cov=app --cov-report=html
+    ```
 
 ### Commit Style
 
