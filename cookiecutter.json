@@ -21,8 +21,8 @@
   "url_source_code": "#",
   "use_async": "y",
   "use_mkdocs": "y",
-  "use_serverless": "y",
-  "use_templates": "y",
+  "use_serverless": "n",
+  "use_templates": "n",
   "use_auth": "y",
   "github_action_code_scan": "y"
 }
