@@ -11,7 +11,7 @@
 ## Features
 
 - [x] For FastAPI 0.104.1
-- [x] Works with Python 3.11
+- [x] Works with Python 3.12
 - [x] Config for Serverless
 - [x] Config for MySQL/SQLlite
 - [x] Async
