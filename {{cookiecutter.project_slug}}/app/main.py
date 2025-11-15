@@ -3,8 +3,8 @@ This module contains the main application.
 """
 
 import uvicorn
-
 {%- if cookiecutter.use_serverless == 'y' %}
+
 from mangum import Mangum
 
 {%- endif %}
