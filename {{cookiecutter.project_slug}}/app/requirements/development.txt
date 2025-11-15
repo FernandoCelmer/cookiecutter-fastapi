@@ -2,19 +2,19 @@
 
 # Testing
 # ------------- #
-pytest==7.4.3 ; python_version >= "3.11" and python_version < "4.0"
+pytest==7.4.3 ; python_version >= "3.12" and python_version < "4.0"
 # ------------- #
 
 {%- if cookiecutter.use_mkdocs == 'y' %}
 # Documentation
 # ------------- #
-mkdocs==1.5.3 ; python_version >= "3.11" and python_version < "4.0"
-mkdocs-simple-blog==0.0.9 ; python_version >= "3.11" and python_version < "4.0"
+mkdocs==1.5.3 ; python_version >= "3.12" and python_version < "4.0"
+mkdocs-simple-blog==0.0.9 ; python_version >= "3.12" and python_version < "4.0"
 # ------------- #
 {%- endif %}
 
 # Code quality
 # ------------- #
-flake8==6.1.0 ; python_version >= "3.11" and python_version < "4.0"
-coverage==7.3.2 ; python_version >= "3.11" and python_version < "4.0"
+flake8==6.1.0 ; python_version >= "3.12" and python_version < "4.0"
+coverage==7.3.2 ; python_version >= "3.12" and python_version < "4.0"
 # ------------- #
