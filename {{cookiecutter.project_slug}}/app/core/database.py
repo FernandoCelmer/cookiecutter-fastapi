@@ -1,9 +1,8 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, registry
-from app.core.settings import Settings
+from app.core.settings import settings  # Import global settings instance
 
 
-settings = Settings.get_settings()
 engine = create_engine(
     url=settings.database_url,
     connect_args={},
@@ -26,7 +25,8 @@ class Database:
     @classmethod
     def _create_engine(cls):
         """Code snippet for testing."""
-        settings = Settings.get_settings()
+        from app.core.settings import get_settings
+        settings = get_settings()
 
         return create_engine(
             url=settings.database_url,
