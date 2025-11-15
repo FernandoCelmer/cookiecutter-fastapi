@@ -7,18 +7,26 @@ license = "{{ cookiecutter.open_source_license }}"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.12"
 fastapi = "^0.104.1"
 uvicorn = "^0.24.0.post1"
+{%- if cookiecutter.use_serverless == 'y' %}
 mangum = "^0.17.0"
+{%- endif %}
 python-dotenv = "^1.0.0"
 pymysql = "^1.1.0"
+{%- if cookiecutter.use_mkdocs == 'y' %}
 mkdocs = "^1.5.3"
 mkdocs-simple-blog = "^0.0.9"
+{%- endif %}
 pydantic-settings = "^2.1.0"
+{%- if cookiecutter.use_auth == 'y' %}
 pydantic = {extras = ["email"], version = "^2.5.3"}
 pyjwt = "^2.8.0"
 passlib = "^1.7.4"
+{%- else %}
+pydantic = "^2.5.3"
+{%- endif %}
 sqlalchemy = "^2.0.25"
 
 
