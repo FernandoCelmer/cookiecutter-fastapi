@@ -1,40 +1,27 @@
-from typing import Annotated
+"""
+This module contains the main application.
+"""
 
-from fastapi import Depends, FastAPI
+import uvicorn
+
 {%- if cookiecutter.use_serverless == 'y' %}
 from mangum import Mangum
+
 {%- endif %}
+from app import create_app
+from app.core.settings import settings
 
-from app import __version__
-from app.core.settings import Settings
-{%- if cookiecutter.use_auth == 'y' %}
-from app.core.auth.endpoints import auth
-{%- endif %}
-from app.api.v1.routers import router
-
-
-app = FastAPI(
-    title="Test FastAPI Template",
-    description="Amazing project with FastAPI!",
-    version=__version__
-)
-
-{%- if cookiecutter.use_auth == 'y' %}
-
-app.include_router(auth, prefix="/auth")
-{%- endif %}
-app.include_router(router, prefix="/v1")
+app = create_app()
 
 {%- if cookiecutter.use_serverless == 'y' %}
-
-handler = Mangum(app)
+handler = Mangum(app, lifespan="off")
 {%- endif %}
 
 
-# TODO: Test Config!
-@app.get("/info")
-async def info(settings: Annotated[Settings, Depends(Settings.get_settings)]):
-    return {
-        "scope": settings.scope,
-        "database_url": settings.database_url
-    }
+if __name__ == "__main__":
+    uvicorn.run(
+        app,
+        host="0.0.0.0",
+        port=8000,
+        reload=settings.is_development
+    )
