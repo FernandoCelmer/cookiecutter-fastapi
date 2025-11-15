@@ -1,3 +1,7 @@
+"""
+This module contains the item model.
+"""
+
 {%- if cookiecutter.id_type == 'UUID' %}
 import uuid
 
