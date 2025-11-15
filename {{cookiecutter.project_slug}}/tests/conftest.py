@@ -77,7 +77,7 @@ def client(db_session):
     )
 
     {%- if cookiecutter.use_auth == 'y' %}
-    test_app.include_router(auth, prefix="/auth", tags=["auth"])
+    test_app.include_router(auth, prefix="/auth")
     {%- endif %}
     test_app.include_router(v1_router, prefix=settings.api_v1_prefix)
     test_app.dependency_overrides[Database.get_db] = override_get_db

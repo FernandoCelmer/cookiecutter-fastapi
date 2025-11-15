@@ -37,7 +37,7 @@ def create_app() -> FastAPI:
     )
 
     {%- if cookiecutter.use_auth == 'y' %}
-    app.include_router(auth, prefix="/auth", tags=["auth"])
+    app.include_router(auth, prefix="/auth")
     {%- endif %}
     app.include_router(v1_router, prefix=settings.api_v1_prefix)
 
