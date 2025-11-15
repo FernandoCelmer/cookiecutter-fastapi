@@ -33,6 +33,22 @@ def remove_templates() -> None:
     rmtree(context_path)
 
 
+def remove_github_workflow() -> None:
+    workflow_path = CONTEXT.joinpath('.github', 'workflows', 'python-app-code.yml')
+    if workflow_path.exists():
+        remove(workflow_path)
+
+    github_dir = CONTEXT.joinpath('.github', 'workflows')
+    if github_dir.exists() and not any(github_dir.iterdir()):
+        rmtree(CONTEXT.joinpath('.github'))
+
+
+def remove_test_auth() -> None:
+    test_auth_path = CONTEXT.joinpath('tests', 'test_auth.py')
+    if test_auth_path.exists():
+        remove(test_auth_path)
+
+
 def main():
     if "{{ cookiecutter.use_mkdocs }}" != "y":
         remove_mkdocs()
@@ -40,11 +56,11 @@ def main():
     if "{{ cookiecutter.use_templates }}" != "y":
         remove_templates()
 
-    if "{{ cookiecutter.use_auth }}" == "y":
-        remove_endpoint(file='item.py')
-        rename_endpoint(file='item_auth.py', for_file='item.py')
-    else:
-        remove_endpoint(file='item_auth.py')
+    if "{{ cookiecutter.github_action_code_scan }}" != "y":
+        remove_github_workflow()
+
+    if "{{ cookiecutter.use_auth }}" == "n":
+        remove_test_auth()
 
 
 if __name__ == "__main__":
