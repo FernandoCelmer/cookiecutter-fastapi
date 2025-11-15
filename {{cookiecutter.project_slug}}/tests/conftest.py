@@ -76,8 +76,6 @@ def client(db_session):
         allow_headers=["*"],
     )
 
-    from app.api.v1 import api_router as v1_router
-    
     {%- if cookiecutter.use_auth == 'y' %}
     test_app.include_router(auth, prefix="/auth", tags=["auth"])
     {%- endif %}
