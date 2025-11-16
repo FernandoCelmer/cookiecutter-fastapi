@@ -1,4 +1,8 @@
-from os import remove, rename
+"""
+This module contains the post-generation project hooks.
+"""
+
+from os import remove
 from pathlib import Path
 from shutil import rmtree
 
@@ -6,57 +10,59 @@ from shutil import rmtree
 CONTEXT = Path.cwd()
 
 
-def rename_endpoint(file: str, for_file: str) -> None:
-    context_path = CONTEXT.joinpath(
-        'app', 'api', 'v1', 'endpoints', file
-    )
-    context_path_new = CONTEXT.joinpath(
-        'app', 'api', 'v1', 'endpoints', for_file
-    )
-
-    rename(context_path, context_path_new)
-
-
-def remove_endpoint(file: str) -> None:
-    context_path = CONTEXT.joinpath('app', 'api', 'v1', 'endpoints', file)
-    remove(context_path)
-
-
 def remove_mkdocs() -> None:
-    context_path = CONTEXT.joinpath('docs')
-    remove('mkdocs.yml')
-    rmtree(context_path)
+    """Remove the mkdocs files and directories."""
+    mkdocs_file = CONTEXT.joinpath('mkdocs.yml')
+    if mkdocs_file.exists():
+        remove(mkdocs_file)
+
+    docs_dir = CONTEXT.joinpath('docs')
+    if docs_dir.exists():
+        rmtree(docs_dir)
 
 
 def remove_templates() -> None:
-    context_path = CONTEXT.joinpath('app', 'static')
-    rmtree(context_path)
+    """Remove all template-related files and directories."""
+    static_path = CONTEXT.joinpath('app', 'static')
+    if static_path.exists():
+        rmtree(static_path)
+
+    templates_config_path = CONTEXT.joinpath('app', 'core', 'templates.py')
+    if templates_config_path.exists():
+        remove(templates_config_path)
+
+    templates_endpoint_path = CONTEXT.joinpath('app', 'api', 'v1', 'endpoints', 'templates.py')
+    if templates_endpoint_path.exists():
+        remove(templates_endpoint_path)
+
+    templates_test_path = CONTEXT.joinpath('tests', 'test_templates.py')
+    if templates_test_path.exists():
+        remove(templates_test_path)
 
 
 def remove_github_workflow() -> None:
-    workflow_path = CONTEXT.joinpath('.github', 'workflows', 'python-app-code.yml')
-    if workflow_path.exists():
-        remove(workflow_path)
-
-    github_dir = CONTEXT.joinpath('.github', 'workflows')
-    if github_dir.exists() and not any(github_dir.iterdir()):
-        rmtree(CONTEXT.joinpath('.github'))
+    """Remove the GitHub workflow directory."""
+    github_dir = CONTEXT.joinpath('.github')
+    if github_dir.exists():
+        rmtree(github_dir)
 
 
 def remove_test_auth() -> None:
+    """Remove the test authentication file."""
     test_auth_path = CONTEXT.joinpath('tests', 'test_auth.py')
     if test_auth_path.exists():
         remove(test_auth_path)
 
 
 def main():
+    """Main function to remove the unwanted files and directories."""
     if "{{ cookiecutter.use_mkdocs }}" != "y":
         remove_mkdocs()
 
     if "{{ cookiecutter.use_templates }}" != "y":
         remove_templates()
 
-    if "{{ cookiecutter.github_action_code_scan }}" != "y":
+    if "{{ cookiecutter.use_github_workflow }}" != "y":
         remove_github_workflow()
 
     if "{{ cookiecutter.use_auth }}" == "n":

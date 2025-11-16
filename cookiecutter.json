@@ -13,16 +13,10 @@
     "Apache Software License 2.0",
     "Not open source"
   ],
-  "id_type": [
-    "UUID",
-    "Integer"
-  ],
   "url_documentation": "#",
   "url_source_code": "#",
-  "use_async": "y",
   "use_mkdocs": "y",
-  "use_serverless": "n",
   "use_templates": "n",
   "use_auth": "y",
-  "github_action_code_scan": "y"
+  "use_github_workflow": "y"
 }
