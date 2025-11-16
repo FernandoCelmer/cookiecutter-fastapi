@@ -18,7 +18,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 RUN pip install --upgrade pip && \
-    pip install poetry==1.7.1 && \
+    pip install poetry>=1.8.0 && \
     poetry config virtualenvs.create false
 
 COPY pyproject.toml poetry.lock* ./
