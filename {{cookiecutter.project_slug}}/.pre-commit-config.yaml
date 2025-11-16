@@ -29,18 +29,12 @@ repos:
         types: [python]
         require_serial: true
 
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.8.0
+  - repo: local
     hooks:
       - id: mypy
         name: mypy
-        additional_dependencies: [
-          types-all,
-          fastapi,
-          pydantic,
-          sqlalchemy,
-        ]
-        args: [--config-file=.code_quality/mypy.ini]
+        entry: bash -c 'mypy --config-file=.code_quality/mypy.ini "$@"' --
+        language: system
         types: [python]
         exclude: ^(migrations/|alembic/|tests/|build/|dist/|venv/|\.venv/)
 
@@ -58,5 +52,5 @@ repos:
     hooks:
       - id: isort
         name: isort
-        args: [--settings-path=.code_quality/isort.cfg]
+        args: [--settings-file=.code_quality/isort.cfg]
         types: [python]
