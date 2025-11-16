@@ -13,7 +13,12 @@ router = APIRouter()
 
 
 {%- if cookiecutter.use_templates == 'y' %}
-@router.get("/", response_class=HTMLResponse, summary="Home page", tags=["Templates"])
+@router.get(
+    "/",
+    response_class=HTMLResponse,
+    summary="Home page",
+    tags=["Templates"]
+)
 async def home(request: Request):
     """Render the home page template."""
     return templates.TemplateResponse(

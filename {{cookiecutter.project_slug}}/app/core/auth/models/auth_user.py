@@ -17,7 +17,12 @@ class AuthUser(Base):
     __tablename__ = "auth_user"
     __table_args__ = {"extend_existing": True}
 
-    id = Column(String(36), primary_key=True, default=lambda: str(uuid4()), index=True)
+    id = Column(
+        String(36),
+        primary_key=True,
+        default=lambda: str(uuid4()),
+        index=True
+    )
     email = Column(String(75), unique=True)
     username = Column(String(45), unique=True)
     password = Column(String(100), unique=True)

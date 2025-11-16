@@ -14,7 +14,12 @@ class Item(Base):
 
     __tablename__ = "item"
     __table_args__ = {"extend_existing": True}
-    id = Column(String(36), primary_key=True, default=lambda: str(uuid4()), index=True)
+    id = Column(
+        String(36),
+        primary_key=True,
+        default=lambda: str(uuid4()),
+        index=True
+    )
     title = Column(String(75))
     description = Column(String(100))
     status = Column(Boolean, default=False)

@@ -13,13 +13,26 @@ from app.core.auth.security import authorization
 router = APIRouter()
 
 
-@router.get("", summary="Get items", response_description="List of items")
-async def get_items({%- if cookiecutter.use_auth == 'y' %}_auth=Depends(authorization){%- endif %}):
+@router.get(
+    "",
+    summary="Get items",
+    response_description="List of items"
+)
+async def get_items(
+    {%- if cookiecutter.use_auth == 'y' %}
+    _auth=Depends(authorization)
+    {%- endif %}
+):
     """Get all items."""
     return {"resource": "item"}
 
 
 @router.get("/{item_id}", summary="Get item by ID")
-async def get_item(item_id: UUID{%- if cookiecutter.use_auth == 'y' %}, _auth=Depends(authorization){%- endif %}):
+async def get_item(
+    item_id: UUID
+    {%- if cookiecutter.use_auth == 'y' %},
+    _auth=Depends(authorization)
+    {%- endif %}
+):
     """Get a specific item by ID."""
     return {"item_id": item_id, "resource": "item"}

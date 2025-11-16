@@ -18,7 +18,10 @@ class TestTemplates:
         assert response.status_code == status.HTTP_200_OK
         assert "text/html" in response.headers["content-type"]
         assert "Welcome to" in response.text
-        assert "{{ cookiecutter.project_name }}" in response.text or "FastAPI Template" in response.text
+        assert (
+            "{{ cookiecutter.project_name }}" in response.text or
+            "FastAPI Template" in response.text
+        )
 
     def test_static_files_accessible(self, client):
         """Test that static files are accessible."""
@@ -28,5 +31,4 @@ class TestTemplates:
         assert "text/css" in response.headers["content-type"]
         assert "body" in response.text
 {%- else %}
-# Template tests are disabled when use_templates is 'n'
 {%- endif %}

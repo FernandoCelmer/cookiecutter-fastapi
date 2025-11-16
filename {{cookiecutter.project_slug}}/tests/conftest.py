@@ -28,7 +28,9 @@ from app.core.settings import settings
 
 os.environ["SCOPE"] = "test"
 os.environ["DATABASE_URL"] = "sqlite:///:memory:"
-os.environ["SECRET_KEY"] = "test-secret-key-for-testing-only-min-32-chars"
+os.environ["SECRET_KEY"] = (
+    "test-secret-key-for-testing-only-min-32-chars"
+)
 
 
 @pytest.fixture(scope="function")
@@ -82,7 +84,11 @@ def client(db_session):
     # Mount static files for testing
     static_dir = Path(__file__).parent.parent / "app" / "static"
     if static_dir.exists():
-        test_app.mount("/static", StaticFiles(directory=str(static_dir)), name="static")
+        test_app.mount(
+            "/static",
+            StaticFiles(directory=str(static_dir)),
+            name="static"
+        )
     {%- endif %}
     {%- if cookiecutter.use_auth == 'y' %}
     test_app.include_router(auth, prefix="/auth")
