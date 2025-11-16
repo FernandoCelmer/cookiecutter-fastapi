@@ -127,7 +127,10 @@ def auth_headers(client, test_user):
     """Get authentication headers for authenticated requests."""
     response = client.post(
         "/auth/login",
-        json={"email": test_user["email"], "password": "testpassword123"},
+        json={
+            "email": test_user["email"],
+            "password": "testpassword123",
+        },
     )
     assert response.status_code == 200
     tokens = response.json()
@@ -139,7 +142,10 @@ def refresh_token(client, test_user):
     """Get refresh token for testing."""
     response = client.post(
         "/auth/login",
-        json={"email": test_user["email"], "password": "testpassword123"},
+        json={
+            "email": test_user["email"],
+            "password": "testpassword123",
+        },
     )
     assert response.status_code == 200
     return response.json()["refresh_token"]

@@ -25,7 +25,10 @@ class TestItem:
     def test_get_item_by_id_success_with_auth(self, client, auth_headers):
         """Test successful item retrieval by ID with authentication."""
         test_id = uuid4()
-        response = client.get(f"/api/v1/items/{test_id}", headers=auth_headers)
+        response = client.get(
+            f"/api/v1/items/{test_id}",
+            headers=auth_headers,
+        )
 
         assert response.status_code == status.HTTP_200_OK
         data = response.json()
