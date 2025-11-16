@@ -5,7 +5,6 @@ This module contains the post-generation project hooks.
 from os import remove
 from pathlib import Path
 from shutil import rmtree
-from subprocess import run
 
 
 CONTEXT = Path.cwd()
@@ -55,25 +54,6 @@ def remove_test_auth() -> None:
         remove(test_auth_path)
 
 
-def fix_imports() -> None:
-    """Fix import sorting with Ruff."""
-    try:
-        run(
-            ["ruff", "check", "--fix", "app/", "tests/"],
-            cwd=CONTEXT,
-            check=False
-        )
-    except FileNotFoundError:
-        try:
-            run(
-                ["poetry", "run", "ruff", "check", "--fix", "app/", "tests/"],
-                cwd=CONTEXT,
-                check=False
-            )
-        except FileNotFoundError:
-            pass
-
-
 def main():
     """Main function to remove the unwanted files and directories."""
     if "{{ cookiecutter.use_mkdocs }}" != "y":
@@ -87,8 +67,6 @@ def main():
 
     if "{{ cookiecutter.use_auth }}" == "n":
         remove_test_auth()
-
-    fix_imports()
 
 
 if __name__ == "__main__":
