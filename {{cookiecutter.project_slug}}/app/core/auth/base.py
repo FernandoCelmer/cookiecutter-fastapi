@@ -19,16 +19,16 @@ class BaseAuth:
         self.crypt = CryptContext(schemes=["sha256_crypt", "des_crypt"])
         self.secret = settings.secret_key
 
-    def encode_password(self, password):
+    def encode_password(self, password: str) -> str:
         """Encode the password."""
         return self.crypt.hash(password)
 
-    def verify_password(self, password, encoded_password):
+    def verify_password(self, password: str, encoded_password: str) -> bool:
         """Verify the password."""
         return self.crypt.verify(password, encoded_password)
 
-    def encode_token(self, email):
-        """Encode the token."""
+    def encode_token(self, email: str) -> str:
+        """Encode the access token."""
         # Use token expiration time from settings
         expire_minutes = settings.access_token_expire_minutes
         payload = {
@@ -40,8 +40,8 @@ class BaseAuth:
 
         return encode(payload, self.secret, algorithm="HS256")
 
-    def decode_token(self, token):
-        """Decode the token."""
+    def decode_token(self, token: str) -> dict:
+        """Decode the access token."""
         try:
             payload = decode(token, self.secret, algorithms=["HS256"])
             if payload["scope"] == "access_token":
@@ -64,7 +64,7 @@ class BaseAuth:
                 detail="Invalid Token",
             ) from error
 
-    def encode_refresh_token(self, email):
+    def encode_refresh_token(self, email: str) -> str:
         """Encode the refresh token."""
         # Use refresh token expiration time from settings
         expire_hours = settings.refresh_token_expire_hours
@@ -77,8 +77,8 @@ class BaseAuth:
 
         return encode(payload=payload, key=self.secret, algorithm="HS256")
 
-    def refresh_token(self, refresh_token):
-        """Refresh the token."""
+    def refresh_token(self, refresh_token: str) -> str:
+        """Refresh the access token."""
         try:
             payload = decode(
                 jwt=refresh_token, key=self.secret, algorithms=["HS256"]

@@ -16,7 +16,9 @@ auth = APIRouter(tags=["Auth"])
 
 
 @auth.post("/signup")
-async def signup(user: SchemaSignup, db: Session = Depends(Database.get_db)):
+async def signup(
+    user: SchemaSignup, db: Session = Depends(Database.get_db)
+) -> SchemaSignupResponse:
     query_user = ControllerAuthUser(db=db).read(params={"email": user.email})
 
     if query_user:
@@ -39,7 +41,9 @@ async def signup(user: SchemaSignup, db: Session = Depends(Database.get_db)):
 
 
 @auth.post("/login")
-async def login(user: SchemaLogin, db: Session = Depends(Database.get_db)):
+async def login(
+    user: SchemaLogin, db: Session = Depends(Database.get_db)
+) -> dict[str, str]:
     query_user = ControllerAuthUser(db=db).read(params={"email": user.email})
 
     if not query_user:
@@ -59,7 +63,7 @@ async def login(user: SchemaLogin, db: Session = Depends(Database.get_db)):
 @auth.get("/refresh_token")
 async def refresh_token(
     credentials: HTTPAuthorizationCredentials = Security(security),
-):
+) -> dict[str, str]:
     refresh_token = credentials.credentials
     new_token = auth_handler.refresh_token(refresh_token)
 

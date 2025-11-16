@@ -17,7 +17,7 @@ auth_handler = BaseAuth()
 async def authorization(
     db: Session = Depends(Database.get_db),
     credentials: HTTPAuthorizationCredentials = Security(security),
-):
+) -> ControllerAuthUser:
     token = credentials.credentials
     payload = auth_handler.decode_token(token=token)
 

@@ -37,7 +37,10 @@ class AuthUser(Base):
 
 
 class ControllerAuthUser(BaseController):
+    """Controller for AuthUser model operations."""
+
     def __init__(self, db=None):
+        """Initialize the AuthUser controller."""
         super().__init__(db)
         self.model_class = AuthUser
 
