@@ -12,6 +12,9 @@ import pytest
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.testclient import TestClient
+{%- if cookiecutter.use_templates == 'y' %}
+from fastapi.staticfiles import StaticFiles
+{%- endif %}
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
@@ -19,9 +22,6 @@ from sqlalchemy.pool import StaticPool
 from app.api.v1 import api_router as v1_router
 {%- if cookiecutter.use_auth == 'y' %}
 from app.core.auth.endpoints import auth
-{%- endif %}
-{%- if cookiecutter.use_templates == 'y' %}
-from fastapi.staticfiles import StaticFiles
 {%- endif %}
 from app.core.database import Base, Database
 from app.core.settings import settings
