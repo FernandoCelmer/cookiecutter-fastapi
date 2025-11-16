@@ -1,6 +1,7 @@
 [tool.poetry]
 name = "{{ cookiecutter.repo_name }}"
 version = "{{ cookiecutter.version }}"
+package-mode = false
 description = "{{ cookiecutter.description }}"
 authors = ["{{ cookiecutter.author_name }} <{{ cookiecutter.email }}>"]
 license = "{{ cookiecutter.open_source_license }}"
@@ -10,9 +11,6 @@ readme = "README.md"
 python = "^3.12"
 fastapi = "^0.104.1"
 uvicorn = "^0.24.0.post1"
-{%- if cookiecutter.use_serverless == 'y' %}
-mangum = "^0.17.0"
-{%- endif %}
 python-dotenv = "^1.0.0"
 pymysql = "^1.1.0"
 {%- if cookiecutter.use_mkdocs == 'y' %}
@@ -33,11 +31,14 @@ sqlalchemy = "^2.0.25"
 [tool.poetry.group.testing.dependencies]
 tox = "^4.11.3"
 pytest = "^7.4.3"
+httpx = "^0.25.0"
 
 
 [tool.poetry.group.code-quality.dependencies]
 flake8 = "^6.1.0"
 coverage = "^7.3.2"
+ruff = "^0.1.0"
+mypy = "^1.7.0"
 
 
 [tool.poetry.group.dev.dependencies]
