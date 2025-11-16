@@ -19,9 +19,7 @@ from app.api.v1 import api_router as v1_router
 from app.core.auth.endpoints import auth
 {%- endif %}
 from app.core.settings import settings
-{%- if cookiecutter.use_templates == 'y' %}
-from app.core.templates import templates
-{%- endif %}
+
 
 app = FastAPI(
     title="{{ cookiecutter.project_name }}",
