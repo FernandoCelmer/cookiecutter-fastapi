@@ -146,4 +146,4 @@ class TestRefreshToken:
         )
         assert response.status_code == status.HTTP_401_UNAUTHORIZED
 {%- else %}
-# Auth tests are disabled when use_auth is 'n'
+{%- endif %}

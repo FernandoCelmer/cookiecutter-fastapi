@@ -29,3 +29,4 @@ class TestTemplates:
         assert "body" in response.text
 {%- else %}
 # Template tests are disabled when use_templates is 'n'
+{%- endif %}
