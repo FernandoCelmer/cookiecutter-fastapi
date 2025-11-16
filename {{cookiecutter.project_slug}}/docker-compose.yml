@@ -13,7 +13,10 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$$MYSQL_ROOT_PASSWORD"]
+      test: [
+        "CMD", "mysqladmin", "ping", "-h", "localhost",
+        "-u", "root", "-p$$MYSQL_ROOT_PASSWORD"
+      ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -31,8 +34,13 @@ services:
       - "${API_PORT:-8000}:8000"
     environment:
       SCOPE: ${SCOPE:-development}
-      DATABASE_URL: mysql+pymysql://${MYSQL_USER:-fastapi_user}:${MYSQL_PASSWORD:-fastapi_password}@db:3306/${MYSQL_DATABASE:-fastapi_db}
-      SECRET_KEY: ${SECRET_KEY:-your-secret-key-change-in-production-min-32-characters}
+      DATABASE_URL: >
+        mysql+pymysql://
+        ${MYSQL_USER:-fastapi_user}:
+        ${MYSQL_PASSWORD:-fastapi_password}@db:3306/
+        ${MYSQL_DATABASE:-fastapi_db}
+      SECRET_KEY: >
+        ${SECRET_KEY:-your-secret-key-change-in-production-min-32-chars}
     depends_on:
       db:
         condition: service_healthy
@@ -40,7 +48,11 @@ services:
       - ./app:/app/app
     command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
     healthcheck:
-      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/docs')"]
+      test: [
+        "CMD", "python", "-c",
+        "import urllib.request; "
+        "urllib.request.urlopen('http://localhost:8000/docs')"
+      ]
       interval: 30s
       timeout: 10s
       retries: 3
