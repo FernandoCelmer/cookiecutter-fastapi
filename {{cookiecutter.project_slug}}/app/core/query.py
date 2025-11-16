@@ -8,25 +8,33 @@ from app.core.database import Base
 
 
 class QueryField:
+    """Represents a single query field with its value."""
+
     def __init__(self, field, value):
+        """Initialize a query field."""
         self.field = field
         self.value = value
 
 
 class QueryData:
+    """Builds query fields from model class and parameters."""
+
     def __new__(cls, model_class: Base, params: dict) -> list[QueryField]:
         return cls.setup(model_class=model_class, params=params)
 
     def __init__(self, model_class: Base, params: dict) -> None:
+        """Initialize query data."""
         self.model_class = model_class
         self.params = params
 
     @classmethod
     def load_keys(cls, model_class: Base):
+        """Load all column keys from the model class."""
         return model_class.__table__.columns.keys()
 
     @classmethod
     def setup(cls, model_class: Base, params: dict) -> list[QueryField]:
+        """Setup query fields from model and parameters."""
         query_data = []
         model_keys = cls.load_keys(model_class=model_class)
 

@@ -16,7 +16,8 @@ class BaseController:
     """Base View to create helpers common to all Webservices."""
 
     def __init__(self, db: Session | None = None):
-        """Constructor"""
+        """Initialize the base controller.
+        """
         self.close_session: bool | None = None
         self.model_class: type[Base] | None = None
 
@@ -35,7 +36,7 @@ class BaseController:
         qtype: str = "first",
         params: dict | None = None,
         **_kwargs,
-    ):
+    ) -> Base | list[Base] | None:
         """Get a record from the database."""
         if params is None:
             params = {}
@@ -69,8 +70,9 @@ class BaseController:
             if self.close_session:
                 self.db.close()
 
-    def create(self, data: dict):
-        """Create a record in the database."""
+    def create(self, data: dict) -> Base | None:
+        """Create a record in the database.
+        """
         if self.model_class is None:
             raise ValueError("model_class must be set")
         db_data = self.model_class(**data)
@@ -95,7 +97,7 @@ class BaseController:
 
     def update(
         self, data: dict, id: UUID | None = None, params: dict | None = None
-    ):
+    ) -> Base | None:
         """Edit a record in the database."""
         if self.model_class is None:
             raise ValueError("model_class must be set")
