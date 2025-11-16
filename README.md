@@ -19,7 +19,7 @@
 - [x] Mkdocs
 - [x] Basic Auth JWT
 - [x] Comprehensive test suite (pytest)
-- [ ] Templates
+- [x] Templates
 - [ ] Crud
 
 ## Usage
