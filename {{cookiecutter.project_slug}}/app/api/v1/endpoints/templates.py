@@ -28,4 +28,5 @@ async def home(request: Request) -> HTMLResponse:
             "project_name": "{{ cookiecutter.project_name }}",
         },
     )
+
 {%- endif %}
