@@ -4,7 +4,7 @@ This module contains the FastAPI application.
 
 __version__ = "{{ cookiecutter.version }}"
 
-__author__ = '{{ cookiecutter.author_name }} <{{ cookiecutter.email }}>'
+__author__ = "{{ cookiecutter.author_name }} <{{ cookiecutter.email }}>"
 
 from pathlib import Path
 
@@ -19,7 +19,6 @@ from app.api.v1 import api_router as v1_router
 from app.core.auth.endpoints import auth
 {%- endif %}
 from app.core.settings import settings
-
 
 app = FastAPI(
     title="{{ cookiecutter.project_name }}",

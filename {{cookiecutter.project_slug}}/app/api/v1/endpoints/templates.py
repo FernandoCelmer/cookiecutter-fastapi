@@ -10,9 +10,9 @@ from app.core.templates import templates
 {%- endif %}
 
 router = APIRouter()
-
-
 {%- if cookiecutter.use_templates == 'y' %}
+
+
 @router.get(
     "/",
     response_class=HTMLResponse,
