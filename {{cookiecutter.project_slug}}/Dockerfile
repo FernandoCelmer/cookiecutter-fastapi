@@ -23,12 +23,12 @@ RUN pip install --upgrade pip && \
 
 COPY pyproject.toml poetry.lock* ./
 
-RUN poetry install --no-dev --no-root && \
+RUN poetry install --without dev --no-root && \
     rm -rf $POETRY_CACHE_DIR
 
 COPY . /app/
 
-RUN poetry install --no-dev --only-root
+RUN poetry install --only-root
 
 RUN useradd --create-home --shell /bin/bash appuser && \
     chown -R appuser:appuser /app
