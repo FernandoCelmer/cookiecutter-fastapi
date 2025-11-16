@@ -20,6 +20,9 @@
 - [x] Basic Auth JWT
 - [x] Comprehensive test suite (pytest)
 - [x] Templates
+- [x] Code quality tools (Ruff, Flake8, MyPy, Black, Isort)
+- [x] Pre-commit hooks
+- [x] PEP 8 compliance (79 character line length)
 - [ ] Crud
 
 ## Usage
@@ -97,6 +100,38 @@ The template includes a comprehensive test suite using pytest.
     ```bash
     pytest --cov=app --cov-report=html
     ```
+
+### Code Quality
+
+The template includes comprehensive code quality tools configured with PEP 8 standards (79 character line length).
+
+1. Install code quality dependencies:
+
+    ```bash
+    poetry install --with code-quality
+    ```
+
+2. Run code quality checks:
+
+    ```bash
+    # Run Ruff (linting and formatting)
+    poetry run ruff check --config=.code_quality/ruff.toml app/ tests/
+    poetry run ruff format --check --config=.code_quality/ruff.toml app/ tests/
+
+    # Run Flake8
+    poetry run flake8 --append-config=.code_quality/.flake8 app/ tests/
+
+    # Run MyPy (type checking)
+    poetry run mypy --config-file=.code_quality/mypy.ini app/
+    ```
+
+3. Setup pre-commit hooks:
+
+    ```bash
+    poetry run pre-commit install
+    ```
+
+    Pre-commit hooks will automatically run code quality checks before each commit.
 
 ### Commit Style
 
