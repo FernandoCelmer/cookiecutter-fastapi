@@ -1,0 +1,62 @@
+# Pre-commit hooks configuration
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+      - id: check-json
+      - id: check-toml
+      - id: check-merge-conflict
+      - id: debug-statements
+      - id: mixed-line-ending
+
+  - repo: local
+    hooks:
+      - id: ruff-check
+        name: ruff (lint)
+        entry: bash -c 'ruff check --config=.code_quality/ruff.toml "$@"' --
+        language: system
+        types: [python]
+        require_serial: true
+      - id: ruff-format
+        name: ruff (format)
+        entry: bash -c 'ruff format --config=.code_quality/ruff.toml "$@"' --
+        language: system
+        types: [python]
+        require_serial: true
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.8.0
+    hooks:
+      - id: mypy
+        name: mypy
+        additional_dependencies: [
+          types-all,
+          fastapi,
+          pydantic,
+          sqlalchemy,
+        ]
+        args: [--config-file=.code_quality/mypy.ini]
+        types: [python]
+        exclude: ^(migrations/|alembic/|tests/|build/|dist/|venv/|\.venv/)
+
+  - repo: https://github.com/psf/black
+    rev: 23.12.1
+    hooks:
+      - id: black
+        name: black
+        args: [--config=.code_quality/black.toml]
+        language_version: python3.12
+        types: [python]
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        name: isort
+        args: [--settings-path=.code_quality/isort.cfg]
+        types: [python]
