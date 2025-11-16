@@ -10,5 +10,5 @@ from app.api.v1.endpoints import item
 
 __all__ = [
     "item"{%- if cookiecutter.use_templates == 'y' %},
-    "templates"{%- endif %}
+    "templates"{%- endif %},
 ]

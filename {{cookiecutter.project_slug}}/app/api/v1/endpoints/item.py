@@ -27,11 +27,14 @@ async def get_items(
     return {"resource": "item"}
 
 
-@router.get("/{item_id}", summary="Get item by ID")
+@router.get(
+    "/{item_id}",
+    summary="Get item by ID",
+)
 async def get_item(
-    item_id: UUID
-    {%- if cookiecutter.use_auth == 'y' %},
-    _auth=Depends(authorization)
+    item_id: UUID,
+    {%- if cookiecutter.use_auth == 'y' %}
+    _auth=Depends(authorization),
     {%- endif %}
 ) -> dict[str, str | UUID]:
     """Get a specific item by ID."""
