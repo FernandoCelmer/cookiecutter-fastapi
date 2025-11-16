@@ -26,6 +26,9 @@ passlib = "^1.7.4"
 pydantic = "^2.5.3"
 {%- endif %}
 sqlalchemy = "^2.0.25"
+{%- if cookiecutter.use_templates == 'y' %}
+jinja2 = "^3.1.2"
+{%- endif %}
 
 
 [tool.poetry.group.testing.dependencies]

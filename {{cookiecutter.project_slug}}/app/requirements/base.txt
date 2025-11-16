@@ -10,4 +10,7 @@ sqlalchemy==2.0.25 ; python_version >= "3.12" and python_version < "4.0"
 pyjwt==2.8.0 ; python_version >= "3.12" and python_version < "4.0"
 passlib==1.7.4 ; python_version >= "3.12" and python_version < "4.0"
 pydantic[email]==2.5.3 ; python_version >= "3.12" and python_version < "4.0"
+{%- if cookiecutter.use_templates == 'y' %}
+jinja2==3.1.2 ; python_version >= "3.12" and python_version < "4.0"
+{%- endif %}
 # ------------- #
