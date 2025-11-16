@@ -81,7 +81,7 @@ def client(db_session):
         allow_headers=["*"],
     )
     {%- if cookiecutter.use_templates == 'y' %}
-    static_dir = Path("/home") / "static"
+    static_dir = Path(__file__).parent.parent / "app" / "static"
     if static_dir.exists():
         test_app.mount(
             "/static",
