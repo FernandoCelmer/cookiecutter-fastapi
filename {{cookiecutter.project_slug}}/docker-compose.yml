@@ -34,13 +34,8 @@ services:
       - "${API_PORT:-8000}:8000"
     environment:
       SCOPE: ${SCOPE:-development}
-      DATABASE_URL: >
-        mysql+pymysql://
-        ${MYSQL_USER:-fastapi_user}:
-        ${MYSQL_PASSWORD:-fastapi_password}@db:3306/
-        ${MYSQL_DATABASE:-fastapi_db}
-      SECRET_KEY: >
-        ${SECRET_KEY:-your-secret-key-change-in-production-min-32-chars}
+      DATABASE_URL: mysql+pymysql://${MYSQL_USER:-fastapi_user}:${MYSQL_PASSWORD:-fastapi_password}@db:3306/${MYSQL_DATABASE:-fastapi_db}
+      SECRET_KEY: ${SECRET_KEY:-your-secret-key-change-in-production-min-32-chars}
     depends_on:
       db:
         condition: service_healthy
