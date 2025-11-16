@@ -4,9 +4,10 @@ API v1 router.
 
 from fastapi import APIRouter
 
-from app.api.v1.endpoints import item
 {%- if cookiecutter.use_templates == 'y' %}
-from app.api.v1.endpoints import templates
+from app.api.v1.endpoints import item, templates
+{%- else %}
+from app.api.v1.endpoints import item
 {%- endif %}
 
 api_router = APIRouter()
