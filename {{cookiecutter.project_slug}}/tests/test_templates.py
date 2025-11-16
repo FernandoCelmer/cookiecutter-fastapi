@@ -30,5 +30,4 @@ class TestTemplates:
         assert response.status_code == status.HTTP_200_OK
         assert "text/css" in response.headers["content-type"]
         assert "body" in response.text
-{%- else %}
 {%- endif %}

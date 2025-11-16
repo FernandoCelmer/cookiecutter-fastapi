@@ -16,8 +16,7 @@ class BaseController:
     """Base View to create helpers common to all Webservices."""
 
     def __init__(self, db: Session | None = None):
-        """Initialize the base controller.
-        """
+        """Initialize the base controller."""
         self.close_session: bool | None = None
         self.model_class: type[Base] | None = None
 
@@ -71,8 +70,7 @@ class BaseController:
                 self.db.close()
 
     def create(self, data: dict) -> Base | None:
-        """Create a record in the database.
-        """
+        """Create a record in the database."""
         if self.model_class is None:
             raise ValueError("model_class must be set")
         db_data = self.model_class(**data)

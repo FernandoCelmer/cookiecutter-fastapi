@@ -6,7 +6,6 @@ from uuid import UUID
 
 from fastapi import APIRouter, Depends
 {%- if cookiecutter.use_auth == 'y' %}
-
 from app.core.auth.security import authorization
 {%- endif %}
 
