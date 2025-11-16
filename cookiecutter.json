@@ -16,7 +16,7 @@
   "url_documentation": "#",
   "url_source_code": "#",
   "use_mkdocs": "y",
-  "use_templates": "n",
+  "use_templates": "y",
   "use_auth": "y",
   "use_github_workflow": "y"
 }
