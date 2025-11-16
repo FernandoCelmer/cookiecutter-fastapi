@@ -6,7 +6,6 @@ from uuid import UUID
 
 from fastapi import APIRouter, Depends
 {%- if cookiecutter.use_auth == 'y' %}
-
 from app.core.auth.security import authorization
 {%- endif %}
 
@@ -18,10 +17,9 @@ router = APIRouter()
     summary="Get items",
     response_description="List of items",
 )
-async def get_items(
-    {%- if cookiecutter.use_auth == 'y' %}
-    _auth=Depends(authorization)
-    {%- endif %}
+async def get_items({%- if cookiecutter.use_auth == 'y' %}
+    _auth=Depends(authorization),
+{%- endif %}
 ) -> dict[str, str]:
     """Get all items."""
     return {"resource": "item"}
