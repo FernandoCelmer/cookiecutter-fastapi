@@ -1,38 +1,34 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, registry
-from app.core.settings import settings  # Import global settings instance
+from sqlalchemy.orm import registry, sessionmaker
 
+from app.core.settings import settings
 
 engine = create_engine(
     url=settings.database_url,
     connect_args={},
     pool_recycle=300,
-    pool_pre_ping=True
+    pool_pre_ping=True,
 )
 
-SessionLocal = sessionmaker(
-    autocommit=False,
-    autoflush=False,
-    bind=engine
-)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 mapper_registry = registry()
 Base = mapper_registry.generate_base()
 
 
 class Database:
-
     @classmethod
     def _create_engine(cls):
         """Code snippet for testing."""
         from app.core.settings import get_settings
+
         settings = get_settings()
 
         return create_engine(
             url=settings.database_url,
             connect_args={},
             pool_recycle=300,
-            pool_pre_ping=True
+            pool_pre_ping=True,
         )
 
     @classmethod
@@ -40,11 +36,7 @@ class Database:
         """Code snippet for testing."""
         engine = cls._create_engine()
 
-        return sessionmaker(
-            autocommit=False,
-            autoflush=False,
-            bind=engine
-        )
+        return sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
     @classmethod
     def get_db(cls):

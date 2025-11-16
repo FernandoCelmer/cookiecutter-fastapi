@@ -1,10 +1,10 @@
 """
 Tests for authentication endpoints.
 """
-
+# flake8: noqa
+# ruff: noqa
+# type: ignore
 {%- if cookiecutter.use_auth == 'y' %}
-import pytest
-
 from fastapi import status
 
 
@@ -34,7 +34,7 @@ class TestSignup:
         invalid_data = {
             "email": "invalid-email",
             "username": "testuser",
-            "password": "testpassword123"
+            "password": "testpassword123",
         }
         response = client.post("/auth/signup", json=invalid_data)
 
@@ -42,9 +42,7 @@ class TestSignup:
 
     def test_signup_missing_fields(self, client):
         """Test signup with missing required fields."""
-        incomplete_data = {
-            "email": "test@example.com"
-        }
+        incomplete_data = {"email": "test@example.com"}
         response = client.post("/auth/signup", json=incomplete_data)
 
         assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
@@ -57,10 +55,13 @@ class TestLogin:
         """Test successful login."""
         client.post("/auth/signup", json=test_user_data)
 
-        response = client.post("/auth/login", json={
-            "email": test_user_data["email"],
-            "password": test_user_data["password"]
-        })
+        response = client.post(
+            "/auth/login",
+            json={
+                "email": test_user_data["email"],
+                "password": test_user_data["password"],
+            },
+        )
 
         assert response.status_code == status.HTTP_200_OK
         data = response.json()
@@ -72,10 +73,13 @@ class TestLogin:
 
     def test_login_invalid_email(self, client):
         """Test login with non-existent email."""
-        response = client.post("/auth/login", json={
-            "email": "nonexistent@example.com",
-            "password": "password123"
-        })
+        response = client.post(
+            "/auth/login",
+            json={
+                "email": "nonexistent@example.com",
+                "password": "password123",
+            },
+        )
 
         assert response.status_code == status.HTTP_401_UNAUTHORIZED
         assert "Invalid email" in response.json()["detail"]
@@ -83,19 +87,22 @@ class TestLogin:
     def test_login_invalid_password(self, client, test_user_data):
         """Test login with wrong password."""
         client.post("/auth/signup", json=test_user_data)
-        response = client.post("/auth/login", json={
-            "email": test_user_data["email"],
-            "password": "wrongpassword"
-        })
+        response = client.post(
+            "/auth/login",
+            json={
+                "email": test_user_data["email"],
+                "password": "wrongpassword",
+            },
+        )
 
         assert response.status_code == status.HTTP_401_UNAUTHORIZED
         assert "Invalid password" in response.json()["detail"]
 
     def test_login_missing_fields(self, client):
         """Test login with missing fields."""
-        response = client.post("/auth/login", json={
-            "email": "test@example.com"
-        })
+        response = client.post(
+            "/auth/login", json={"email": "test@example.com"}
+        )
 
         assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
 
@@ -107,7 +114,7 @@ class TestRefreshToken:
         """Test successful token refresh."""
         response = client.get(
             "/auth/refresh_token",
-            headers={"Authorization": f"Bearer {refresh_token}"}
+            headers={"Authorization": f"Bearer {refresh_token}"},
         )
 
         assert response.status_code == status.HTTP_200_OK
@@ -125,7 +132,7 @@ class TestRefreshToken:
         """Test refresh token with invalid token."""
         response = client.get(
             "/auth/refresh_token",
-            headers={"Authorization": "Bearer invalid_token"}
+            headers={"Authorization": "Bearer invalid_token"},
         )
 
         assert response.status_code == status.HTTP_401_UNAUTHORIZED
@@ -135,8 +142,8 @@ class TestRefreshToken:
         access_token = auth_headers["Authorization"].split(" ")[1]
         response = client.get(
             "/auth/refresh_token",
-            headers={"Authorization": f"Bearer {access_token}"}
+            headers={"Authorization": f"Bearer {access_token}"},
         )
         assert response.status_code == status.HTTP_401_UNAUTHORIZED
-{%- endif %}
-
+{%- else %}
+# Auth tests are disabled when use_auth is 'n'

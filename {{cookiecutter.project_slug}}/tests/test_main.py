@@ -1,8 +1,9 @@
 """
 Tests for main application.
 """
-
-import pytest
+# flake8: noqa
+# ruff: noqa
+# type: ignore
 from fastapi import status
 
 
@@ -15,7 +16,7 @@ class TestHealthCheck:
 
         assert response.status_code in [
             status.HTTP_200_OK,
-            status.HTTP_404_NOT_FOUND
+            status.HTTP_404_NOT_FOUND,
         ]
 
     def test_docs_endpoint(self, client):
@@ -35,26 +36,19 @@ class TestHealthCheck:
 
     def test_cors_headers(self, client):
         """Test CORS headers in responses."""
-        {%- if cookiecutter.use_auth == 'y' %}
         response = client.options(
+            {%- if cookiecutter.use_auth == 'y' %}
             "/auth/signup",
-            headers={
-                "Origin": "http://localhost:3000",
-                "Access-Control-Request-Method": "POST"
-            }
-        )
-        {%- else %}
-        response = client.options(
+            {%- else %}
             "/api/v1/items",
+            {%- endif %}
             headers={
                 "Origin": "http://localhost:3000",
-                "Access-Control-Request-Method": "GET"
-            }
+                "Access-Control-Request-Method": "POST",
+            },
         )
-        {%- endif %}
 
         assert response.status_code in [
             status.HTTP_200_OK,
-            status.HTTP_405_METHOD_NOT_ALLOWED
+            status.HTTP_405_METHOD_NOT_ALLOWED,
         ]
-

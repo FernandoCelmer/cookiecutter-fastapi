@@ -1,25 +1,30 @@
 """
 Configuration for pytest tests.
 """
+# flake8: noqa
+# ruff: noqa
+# type: ignore
 
 import os
-import pytest
+from pathlib import Path
 
-from fastapi.testclient import TestClient
+import pytest
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
+from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
-from app.core.database import Base, Database
-from app.core.settings import settings
+from app.api.v1 import api_router as v1_router
 {%- if cookiecutter.use_auth == 'y' %}
 from app.core.auth.endpoints import auth
 {%- endif %}
-from app.api.v1 import api_router as v1_router
-
+{%- if cookiecutter.use_templates == 'y' %}
+from fastapi.staticfiles import StaticFiles
+{%- endif %}
+from app.core.database import Base, Database
+from app.core.settings import settings
 
 os.environ["SCOPE"] = "test"
 os.environ["DATABASE_URL"] = "sqlite:///:memory:"
@@ -36,9 +41,7 @@ def db_session():
     )
 
     TestingSessionLocal = sessionmaker(
-        autocommit=False,
-        autoflush=False,
-        bind=engine
+        autocommit=False, autoflush=False, bind=engine
     )
 
     Base.metadata.create_all(bind=engine)
@@ -65,7 +68,7 @@ def client(db_session):
         title="{{ cookiecutter.project_name }}",
         description="{{ cookiecutter.description }}",
         version="{{ cookiecutter.version }}",
-        debug=settings.is_development
+        debug=settings.is_development,
     )
 
     test_app.add_middleware(
@@ -75,7 +78,12 @@ def client(db_session):
         allow_methods=["*"],
         allow_headers=["*"],
     )
-
+    {%- if cookiecutter.use_templates == 'y' %}
+    # Mount static files for testing
+    static_dir = Path(__file__).parent.parent / "app" / "static"
+    if static_dir.exists():
+        test_app.mount("/static", StaticFiles(directory=str(static_dir)), name="static")
+    {%- endif %}
     {%- if cookiecutter.use_auth == 'y' %}
     test_app.include_router(auth, prefix="/auth")
     {%- endif %}
@@ -95,7 +103,7 @@ def test_user_data():
     return {
         "email": "test@example.com",
         "username": "testuser",
-        "password": "testpassword123"
+        "password": "testpassword123",
     }
 
 
@@ -108,27 +116,24 @@ def test_user(client, test_user_data):
 
 
 @pytest.fixture
-def auth_headers(client, test_user_data):
+def auth_headers(client, test_user):
     """Get authentication headers for authenticated requests."""
-    response = client.post("/auth/login", json={
-        "email": test_user_data["email"],
-        "password": test_user_data["password"]
-    })
+    response = client.post(
+        "/auth/login",
+        json={"email": test_user["email"], "password": "testpassword123"},
+    )
     assert response.status_code == 200
     tokens = response.json()
-    return {
-        "Authorization": f"Bearer {tokens['access_token']}"
-    }
+    return {"Authorization": f"Bearer {tokens['access_token']}"}
 
 
 @pytest.fixture
-def refresh_token(client, test_user_data):
+def refresh_token(client, test_user):
     """Get refresh token for testing."""
-    response = client.post("/auth/login", json={
-        "email": test_user_data["email"],
-        "password": test_user_data["password"]
-    })
+    response = client.post(
+        "/auth/login",
+        json={"email": test_user["email"], "password": "testpassword123"},
+    )
     assert response.status_code == 200
     return response.json()["refresh_token"]
 {%- endif %}
-
