@@ -44,8 +44,7 @@ def create_app() -> FastAPI:
     )
 
     {%- if cookiecutter.use_templates == 'y' %}
-    # Mount static files directory
-    static_dir = Path(__file__).parent / "static"
+    static_dir = Path("/home") / "static"
     if static_dir.exists():
         app.mount(
             "/static",
