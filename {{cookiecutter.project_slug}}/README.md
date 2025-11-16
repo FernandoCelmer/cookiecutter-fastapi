@@ -1,8 +1,8 @@
-# {{ cookiecutter.repo_name }}
+# {{ cookiecutter.project_name }}
 
 {{ cookiecutter.description }}
 
-- **Documentation**: [{{ cookiecutter.url_documentation }}]({{ cookiecutter.url_documentation }}/)
+- **Documentation**: [{{ cookiecutter.url_documentation }}]({{ cookiecutter.url_documentation }})
 - **Source Code**: [{{ cookiecutter.url_source_code }}]({{ cookiecutter.url_source_code }})
 
 ### Commit Style
@@ -17,10 +17,6 @@
 - ⬆️ CI/CD
 - ⚠️ SECURITY
 
-{%- if cookiecutter.open_source_license != "Not open source" %}
-
 ### License
 
 This project is licensed under the terms of the {{ cookiecutter.open_source_license }} license.
-{%- endif %}
-
