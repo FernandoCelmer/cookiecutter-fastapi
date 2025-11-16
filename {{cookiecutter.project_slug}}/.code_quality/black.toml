@@ -20,4 +20,3 @@ extend-exclude = '''
   | alembic
 )/
 '''
-
