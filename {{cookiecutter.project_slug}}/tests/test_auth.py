@@ -101,7 +101,8 @@ class TestLogin:
     def test_login_missing_fields(self, client):
         """Test login with missing fields."""
         response = client.post(
-            "/auth/login", json={"email": "test@example.com"}
+            "/auth/login",
+            json={"email": "test@example.com"},
         )
 
         assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY

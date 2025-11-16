@@ -48,7 +48,8 @@ class TestItem:
     def test_get_items_invalid_token(self, client):
         """Test items endpoint with invalid token."""
         response = client.get(
-            "/api/v1/items", headers={"Authorization": "Bearer invalid_token"}
+            "/api/v1/items",
+            headers={"Authorization": "Bearer invalid_token"},
         )
 
         assert response.status_code == status.HTTP_401_UNAUTHORIZED

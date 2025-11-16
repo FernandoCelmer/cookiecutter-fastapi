@@ -19,8 +19,8 @@ class TestTemplates:
         assert "text/html" in response.headers["content-type"]
         assert "Welcome to" in response.text
         assert (
-            "{{ cookiecutter.project_name }}" in response.text or
-            "FastAPI Template" in response.text
+            "{{ cookiecutter.project_name }}" in response.text
+            or "FastAPI Template" in response.text
         )
 
     def test_static_files_accessible(self, client):
