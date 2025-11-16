@@ -19,7 +19,7 @@ router = APIRouter()
     summary="Home page",
     tags=["Templates"]
 )
-async def home(request: Request):
+async def home(request: Request) -> HTMLResponse:
     """Render the home page template."""
     return templates.TemplateResponse(
         "index.html",

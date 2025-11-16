@@ -1,6 +1,7 @@
 """
 This module contains the item model.
 """
+
 from datetime import datetime
 from uuid import uuid4
 

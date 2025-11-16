@@ -22,7 +22,7 @@ async def get_items(
     {%- if cookiecutter.use_auth == 'y' %}
     _auth=Depends(authorization)
     {%- endif %}
-):
+) -> dict[str, str]:
     """Get all items."""
     return {"resource": "item"}
 
@@ -33,6 +33,6 @@ async def get_item(
     {%- if cookiecutter.use_auth == 'y' %},
     _auth=Depends(authorization)
     {%- endif %}
-):
+) -> dict[str, str | UUID]:
     """Get a specific item by ID."""
     return {"item_id": item_id, "resource": "item"}
