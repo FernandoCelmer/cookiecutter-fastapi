@@ -1,0 +1,61 @@
+name: 🔍 Code Quality
+
+on:
+  push:
+    branches: ["main", "develop", "master"]
+  pull_request:
+    branches: ["main", "develop", "master"]
+  workflow_dispatch:
+
+jobs:
+  code-quality:
+    name: Code Quality Checks
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.12"]
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: 📦 Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: latest
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+          installer-parallel: true
+
+      - name: 📚 Install dependencies
+        run: poetry install --no-interaction --no-root --with code-quality,testing
+
+      - name: 🔍 Ruff (Linting)
+        run: |
+          poetry run ruff check --config=.code_quality/ruff.toml app/ tests/
+
+      - name: 🎨 Ruff (Format Check)
+        run: |
+          poetry run ruff format --check --config=.code_quality/ruff.toml app/ tests/
+
+      - name: 🔍 Flake8
+        run: |
+          poetry run flake8 --append-config=.code_quality/.flake8 app/ tests/
+
+      - name: 🔍 MyPy (Type Checking)
+        run: |
+          poetry run mypy --config-file=.code_quality/mypy.ini app/
+        continue-on-error: true
+
+      - name: ✅ Code Quality Summary
+        if: always()
+        run: |
+          echo "### Code Quality Checks Completed ✅" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "All code quality tools have been executed." >> $GITHUB_STEP_SUMMARY
+
