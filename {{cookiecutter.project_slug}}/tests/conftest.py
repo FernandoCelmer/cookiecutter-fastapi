@@ -28,9 +28,7 @@ from app.core.settings import settings
 
 os.environ["SCOPE"] = "test"
 os.environ["DATABASE_URL"] = "sqlite:///:memory:"
-os.environ["SECRET_KEY"] = (
-    "test-secret-key-for-testing-only-min-32-chars"
-)
+os.environ["SECRET_KEY"] = "test-secret-key-for-testing-only-min-32-chars"
 
 
 @pytest.fixture(scope="function")
@@ -101,9 +99,9 @@ def client(db_session):
         yield test_client
 
     test_app.dependency_overrides.clear()
-
-
 {%- if cookiecutter.use_auth == 'y' %}
+
+
 @pytest.fixture
 def test_user_data():
     """Sample user data for testing."""
