@@ -16,7 +16,7 @@ router = APIRouter()
 @router.get(
     "",
     summary="Get items",
-    response_description="List of items"
+    response_description="List of items",
 )
 async def get_items(
     {%- if cookiecutter.use_auth == 'y' %}

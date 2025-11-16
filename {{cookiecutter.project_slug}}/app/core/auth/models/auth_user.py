@@ -21,7 +21,7 @@ class AuthUser(Base):
         String(36),
         primary_key=True,
         default=lambda: str(uuid4()),
-        index=True
+        index=True,
     )
     email = Column(String(75), unique=True)
     username = Column(String(45), unique=True)
@@ -32,7 +32,9 @@ class AuthUser(Base):
     is_active = Column(Boolean, default=True)
     created_date = Column(DateTime, default=datetime.utcnow)
     update_date = Column(
-        DateTime, default=datetime.utcnow, onupdate=datetime.utcnow
+        DateTime,
+        default=datetime.utcnow,
+        onupdate=datetime.utcnow,
     )
 
 

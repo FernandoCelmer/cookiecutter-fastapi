@@ -29,4 +29,5 @@ async def home(request: Request) -> HTMLResponse:
         },
     )
 
+
 {%- endif %}

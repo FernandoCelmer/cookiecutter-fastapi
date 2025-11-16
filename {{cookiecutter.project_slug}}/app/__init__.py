@@ -50,7 +50,7 @@ def create_app() -> FastAPI:
         app.mount(
             "/static",
             StaticFiles(directory=str(static_dir)),
-            name="static"
+            name="static",
         )
     {%- endif %}
 

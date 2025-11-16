@@ -86,7 +86,7 @@ def client(db_session):
         test_app.mount(
             "/static",
             StaticFiles(directory=str(static_dir)),
-            name="static"
+            name="static",
         )
     {%- endif %}
     {%- if cookiecutter.use_auth == 'y' %}

@@ -19,14 +19,16 @@ class Item(Base):
         String(36),
         primary_key=True,
         default=lambda: str(uuid4()),
-        index=True
+        index=True,
     )
     title = Column(String(75))
     description = Column(String(100))
     status = Column(Boolean, default=False)
     created_date = Column(DateTime, default=datetime.utcnow)
     update_date = Column(
-        DateTime, default=datetime.utcnow, onupdate=datetime.utcnow
+        DateTime,
+        default=datetime.utcnow,
+        onupdate=datetime.utcnow,
     )
 
 
