@@ -22,11 +22,9 @@ router = APIRouter()
 async def home(request: Request) -> HTMLResponse:
     """Render the home page template."""
     return templates.TemplateResponse(
+        request,
         "index.html",
-        {
-            "request": request,
-            "project_name": "{{ cookiecutter.project_name }}",
-        },
+        {"project_name": "{{ cookiecutter.project_name }}"},
     )
 
 {%- endif %}
