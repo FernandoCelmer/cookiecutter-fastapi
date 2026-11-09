@@ -127,7 +127,7 @@ class TestRefreshToken:
         """Test refresh token without authorization header."""
         response = client.get("/auth/refresh_token")
 
-        assert response.status_code == status.HTTP_403_FORBIDDEN
+        assert response.status_code == status.HTTP_401_UNAUTHORIZED
 
     def test_refresh_token_invalid_token(self, client):
         """Test refresh token with invalid token."""

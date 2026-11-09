@@ -39,14 +39,14 @@ class TestItem:
         """Test items endpoint without authentication."""
         response = client.get("/api/v1/items")
 
-        assert response.status_code == status.HTTP_403_FORBIDDEN
+        assert response.status_code == status.HTTP_401_UNAUTHORIZED
 
     def test_get_item_by_id_unauthorized(self, client):
         """Test item by ID endpoint without authentication."""
         test_id = uuid4()
         response = client.get(f"/api/v1/items/{test_id}")
 
-        assert response.status_code == status.HTTP_403_FORBIDDEN
+        assert response.status_code == status.HTTP_401_UNAUTHORIZED
 
     def test_get_items_invalid_token(self, client):
         """Test items endpoint with invalid token."""
