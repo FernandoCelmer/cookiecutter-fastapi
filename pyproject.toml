@@ -23,7 +23,7 @@ sqlalchemy = "^2.0.25"
 
 [tool.poetry.group.testing.dependencies]
 tox = "^4.11.3"
-pytest = "^7.4.3"
+pytest = "^9.0.3"
 
 
 [tool.poetry.group.code-quality.dependencies]

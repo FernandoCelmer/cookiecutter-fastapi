@@ -2,7 +2,7 @@
 
 # Testing
 # ------------- #
-pytest==7.4.3 ; python_version >= "3.12" and python_version < "4.0"
+pytest==9.2.0 ; python_version >= "3.12" and python_version < "4.0"
 # ------------- #
 
 # Code quality
